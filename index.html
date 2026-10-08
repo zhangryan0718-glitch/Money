@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PocketPlan is a simple budget tracker that helps kids make their money last." />
+  <title>PocketPlan | Make your money last</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="PocketPlan home">
+      <span class="brand-mark">$</span>
+      <span>PocketPlan</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#activity">Activity</a>
+      <a href="#tips">Tips</a>
+    </nav>
+    <button class="avatar" id="profileButton" type="button" aria-label="Open profile">R</button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Your money, your choices</p>
+        <h1 id="hero-title">Make your money <em>last.</em></h1>
+        <p class="hero-text">A friendly place to see what you have, plan what is next, and spend with confidence.</p>
+        <a class="button button-dark" href="#dashboard">See my plan <span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-illustration" aria-label="Illustration of a money jar with coins" role="img">
+        <div class="sun"></div>
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        <div class="jar-shadow"></div>
+        <div class="jar"><span class="jar-label">MY<br />MONEY</span><span class="jar-coin">$</span></div>
+        <div class="coin coin-one">$</div><div class="coin coin-two">$</div><div class="coin coin-three">$</div>
+        <div class="sparkle sparkle-one">✦</div><div class="sparkle sparkle-two">✦</div>
+      </div>
+    </section>
+
+    <section class="dashboard section-wrap" id="dashboard" aria-labelledby="dashboard-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">A clear plan for today</p><h2 id="dashboard-title">Hi, Ryan <span aria-hidden="true">👋</span></h2></div>
+        <p class="date-label" id="todayLabel"></p>
+      </div>
+
+      <div class="overview-grid">
+        <article class="balance-card card">
+          <div class="card-top"><span>Available to spend</span><span class="status-dot" aria-label="On track"></span></div>
+          <strong class="big-number" id="availableAmount">$80.00</strong>
+          <div class="progress-track"><div class="progress-fill" id="availableProgress"></div></div>
+          <div class="card-meta"><span id="spentLabel">$20.00 spent</span><span id="budgetLabel">of $100.00</span></div>
+        </article>
+        <article class="goal-card card">
+          <div class="card-top"><span>Saving goal</span><span class="goal-icon">★</span></div>
+          <div class="goal-row"><strong class="big-number" id="goalAmount">$45</strong><span>of $100</span></div>
+          <div class="progress-track warm"><div class="progress-fill" id="goalProgress"></div></div>
+          <p class="card-note">A new pair of headphones</p>
+        </article>
+        <article class="streak-card card">
+          <span class="streak-icon">⚡</span><strong>3 days</strong><p>staying on track</p>
+          <span class="streak-message">Keep it going!</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="action-area section-wrap" id="activity" aria-labelledby="activity-title">
+      <div class="section-heading compact"><div><p class="eyebrow">Small steps add up</p><h2 id="activity-title">What happened today?</h2></div><button class="button button-coral" id="addExpenseButton" type="button">+ Add spending</button></div>
+      <div class="activity-layout">
+        <article class="activity-card card">
+          <div class="activity-header"><h3>Recent activity</h3><button class="text-button" id="clearActivityButton" type="button">Clear all</button></div>
+          <div class="activity-list" id="activityList" aria-live="polite"></div>
+          <p class="empty-state" id="emptyState">No spending yet. Add your first purchase to see it here.</p>
+        </article>
+        <aside class="tip-card">
+          <span class="tip-scribble">A tiny tip</span>
+          <h3>Try the<br /><em>24-hour rule</em></h3>
+          <p>Want something that is not a need? Wait one day before you buy it. You might decide to save instead.</p>
+          <span class="tip-arrow">↘</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="how-it-works section-wrap" id="tips" aria-labelledby="tips-title">
+      <p class="eyebrow">Budgeting made simple</p><h2 id="tips-title">Three moves. More control.</h2>
+      <div class="steps">
+        <article><span class="step-number">01</span><h3>See it</h3><p>Know exactly how much money you have left before you spend.</p></article>
+        <article><span class="step-number">02</span><h3>Log it</h3><p>Add purchases in seconds so small spends do not sneak up on you.</p></article>
+        <article><span class="step-number">03</span><h3>Choose it</h3><p>Save for something you want and make your money work for you.</p></article>
+      </div>
+      <div class="built-for"><span class="avatar-stack"><span>E</span><span>N</span><span>J</span><span>S</span></span><p>Made with feedback from <strong>Emma, Noah, Jordan, and Sophie.</strong></p></div>
+    </section>
+  </main>
+
+  <dialog id="expenseDialog" class="expense-dialog">
+    <form method="dialog" id="expenseForm">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <p class="eyebrow">Keep your plan up to date</p><h2>Add spending</h2>
+      <label for="expenseName">What did you buy?</label><input id="expenseName" name="name" type="text" placeholder="e.g. Smoothie" required maxlength="40" />
+      <label for="expenseAmount">How much?</label><div class="amount-input"><span>$</span><input id="expenseAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div>
+      <label for="expenseCategory">Category</label><select id="expenseCategory" name="category"><option value="Fun">Fun</option><option value="Food">Food</option><option value="School">School</option><option value="Other">Other</option></select>
+      <button class="button button-dark full-width" value="default" type="submit">Save spending</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
