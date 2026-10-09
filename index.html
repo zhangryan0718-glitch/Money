@@ -67,7 +67,7 @@
     </section>
 
     <section class="action-area section-wrap" id="activity" aria-labelledby="activity-title">
-      <div class="section-heading compact"><div><p class="eyebrow">Small steps add up</p><h2 id="activity-title">What happened today?</h2></div><button class="button button-coral" id="addExpenseButton" type="button">+ Add spending</button></div>
+      <div class="section-heading compact"><div><p class="eyebrow">Small steps add up</p><h2 id="activity-title">What happened today?</h2></div><div class="activity-actions"><button class="button button-mint" id="addIncomeButton" type="button">+ Add money</button><button class="button button-coral" id="addExpenseButton" type="button">+ Add spending</button></div></div>
       <div class="activity-layout">
         <article class="activity-card card">
           <div class="activity-header"><h3>Recent activity</h3><button class="text-button" id="clearActivityButton" type="button">Clear spending</button></div>
@@ -90,7 +90,7 @@
         <article><span class="step-number">02</span><h3>Log it</h3><p>Add purchases in seconds so small spends do not sneak up on you.</p></article>
         <article><span class="step-number">03</span><h3>Choose it</h3><p>Save for something you want and make your money work for you.</p></article>
       </div>
-      <div class="built-for"><span class="avatar-stack"><span>E</span><span>N</span><span>J</span><span>S</span></span><p>Made with feedback from <strong>Emma, Noah, Jordan, and Sophie.</strong></p></div>
+      <div class="built-for"><span class="avatar-stack"><span>E</span><span>N</span><span>J</span></span><p>Made with feedback from <strong>Emma, Noah, and Jordan.</strong></p></div>
     </section>
   </main>
 
@@ -106,6 +106,7 @@
   </dialog>
   <dialog id="savingsDialog" class="expense-dialog" aria-labelledby="savingsDialogTitle"><form method="dialog" id="savingsForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">Put money toward something special</p><h2 id="savingsDialogTitle">Add savings</h2><label for="savingsAmount">How much?</label><div class="amount-input"><span>$</span><input id="savingsAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div><button class="button button-dark full-width" value="default" type="submit">Save savings</button></form></dialog>
   <dialog id="goalDialog" class="expense-dialog" aria-labelledby="goalDialogTitle"><form method="dialog" id="goalForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">Choose something to work toward</p><h2 id="goalDialogTitle">Edit goal</h2><label for="goalNameInput">Goal name</label><input id="goalNameInput" name="name" type="text" maxlength="40" required /><label for="goalTargetInput">Target amount</label><div class="amount-input"><span>$</span><input id="goalTargetInput" name="target" type="number" min="0.01" step="0.01" required /></div><button class="button button-dark full-width" value="default" type="submit">Save goal</button></form></dialog>
+  <dialog id="incomeDialog" class="expense-dialog" aria-labelledby="incomeDialogTitle"><form method="dialog" id="incomeForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">Give your budget a boost</p><h2 id="incomeDialogTitle">Add money</h2><label for="incomeSource">Where did it come from?</label><input id="incomeSource" name="source" type="text" placeholder="e.g. Weekly allowance" maxlength="40" required /><label for="incomeAmount">How much?</label><div class="amount-input"><span>$</span><input id="incomeAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div><button class="button button-dark full-width" value="default" type="submit">Add to budget</button></form></dialog>
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
