@@ -43,21 +43,21 @@
     <section class="dashboard section-wrap" id="dashboard" aria-labelledby="dashboard-title">
       <div class="section-heading">
         <div><p class="eyebrow">A clear plan for today</p><h2 id="dashboard-title">Hi, Ryan <span aria-hidden="true">👋</span></h2></div>
-        <p class="date-label" id="todayLabel"></p>
+        <div class="dashboard-controls"><label for="periodSelect">Budget period</label><select id="periodSelect"><option value="week">This week</option><option value="month">This month</option><option value="custom">Custom</option><option value="all">All time</option></select><span id="customDates" class="custom-dates" hidden><label for="periodStart">From</label><input id="periodStart" type="date" /><label for="periodEnd">to</label><input id="periodEnd" type="date" /></span><p class="date-label" id="todayLabel"></p></div>
       </div>
 
       <div class="overview-grid">
         <article class="balance-card card">
-          <div class="card-top"><span>Available to spend</span><span class="status-dot" aria-label="On track"></span></div>
+          <div class="card-top"><span>Available to spend</span><span class="status-dot" id="statusDot" role="status">On track</span></div>
           <strong class="big-number" id="availableAmount">$80.00</strong>
-          <div class="progress-track"><div class="progress-fill" id="availableProgress"></div></div>
+          <div class="progress-track" role="progressbar" aria-label="Available budget remaining" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="progress-fill" id="availableProgress"></div></div>
           <div class="card-meta"><span id="spentLabel">$20.00 spent</span><span id="budgetLabel">of $100.00</span></div>
         </article>
         <article class="goal-card card">
           <div class="card-top"><span>Saving goal</span><span class="goal-icon">★</span></div>
-          <div class="goal-row"><strong class="big-number" id="goalAmount">$45</strong><span>of $100</span></div>
-          <div class="progress-track warm"><div class="progress-fill" id="goalProgress"></div></div>
-          <p class="card-note">A new pair of headphones</p>
+          <div class="goal-row"><strong class="big-number" id="goalAmount">$45</strong><span id="goalTarget">of $100</span></div>
+          <div class="progress-track warm" role="progressbar" aria-label="Savings goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45"><div class="progress-fill" id="goalProgress"></div></div>
+          <p class="card-note" id="goalName">A new pair of headphones</p><div class="goal-actions"><button class="text-button" id="addSavingsButton" type="button">+ Add savings</button><button class="text-button" id="editGoalButton" type="button">Edit goal</button></div>
         </article>
         <article class="streak-card card">
           <span class="streak-icon">⚡</span><strong>3 days</strong><p>staying on track</p>
@@ -70,7 +70,7 @@
       <div class="section-heading compact"><div><p class="eyebrow">Small steps add up</p><h2 id="activity-title">What happened today?</h2></div><button class="button button-coral" id="addExpenseButton" type="button">+ Add spending</button></div>
       <div class="activity-layout">
         <article class="activity-card card">
-          <div class="activity-header"><h3>Recent activity</h3><button class="text-button" id="clearActivityButton" type="button">Clear all</button></div>
+          <div class="activity-header"><h3>Recent activity</h3><button class="text-button" id="clearActivityButton" type="button">Clear spending</button></div>
           <div class="activity-list" id="activityList" aria-live="polite"></div>
           <p class="empty-state" id="emptyState">No spending yet. Add your first purchase to see it here.</p>
         </article>
@@ -94,16 +94,18 @@
     </section>
   </main>
 
-  <dialog id="expenseDialog" class="expense-dialog">
+  <dialog id="expenseDialog" class="expense-dialog" aria-labelledby="expenseDialogTitle">
     <form method="dialog" id="expenseForm">
       <button class="dialog-close" value="cancel" aria-label="Close">×</button>
-      <p class="eyebrow">Keep your plan up to date</p><h2>Add spending</h2>
+      <p class="eyebrow">Keep your plan up to date</p><h2 id="expenseDialogTitle">Add spending</h2>
       <label for="expenseName">What did you buy?</label><input id="expenseName" name="name" type="text" placeholder="e.g. Smoothie" required maxlength="40" />
       <label for="expenseAmount">How much?</label><div class="amount-input"><span>$</span><input id="expenseAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div>
       <label for="expenseCategory">Category</label><select id="expenseCategory" name="category"><option value="Fun">Fun</option><option value="Food">Food</option><option value="School">School</option><option value="Other">Other</option></select>
       <button class="button button-dark full-width" value="default" type="submit">Save spending</button>
     </form>
   </dialog>
+  <dialog id="savingsDialog" class="expense-dialog" aria-labelledby="savingsDialogTitle"><form method="dialog" id="savingsForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">Put money toward something special</p><h2 id="savingsDialogTitle">Add savings</h2><label for="savingsAmount">How much?</label><div class="amount-input"><span>$</span><input id="savingsAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required /></div><button class="button button-dark full-width" value="default" type="submit">Save savings</button></form></dialog>
+  <dialog id="goalDialog" class="expense-dialog" aria-labelledby="goalDialogTitle"><form method="dialog" id="goalForm"><button class="dialog-close" value="cancel" aria-label="Close">×</button><p class="eyebrow">Choose something to work toward</p><h2 id="goalDialogTitle">Edit goal</h2><label for="goalNameInput">Goal name</label><input id="goalNameInput" name="name" type="text" maxlength="40" required /><label for="goalTargetInput">Target amount</label><div class="amount-input"><span>$</span><input id="goalTargetInput" name="target" type="number" min="0.01" step="0.01" required /></div><button class="button button-dark full-width" value="default" type="submit">Save goal</button></form></dialog>
   <div class="toast" id="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
